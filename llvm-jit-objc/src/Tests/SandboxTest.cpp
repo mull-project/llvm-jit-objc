@@ -30,7 +30,7 @@ TEST(DISABLED_XCTest_ObjC, Test_001_Minimal) {
     "/System/Library/Frameworks/Foundation.framework/Versions/Current/Foundation"
   ));
   assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-    "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework/XCTest"
+    "/Applications/Xcode-9.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework/XCTest"
   ));
   assert(!sys::DynamicLibrary::LoadLibraryPermanently(
     "/Users/Stanislaw/rootstanislaw/projects/CustomXCTestRunner/CustomXCTestRunner.dylib"
