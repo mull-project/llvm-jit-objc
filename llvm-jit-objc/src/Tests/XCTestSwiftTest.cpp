@@ -184,4 +184,5 @@ TEST(XCTest_Swift, Test_001_Minimal) {
     exit(1);
   }
   int result = runnerFPtr();
+  ASSERT_EQ(result, 0);
 }

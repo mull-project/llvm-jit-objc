@@ -17,7 +17,7 @@
 using namespace llvm;
 using namespace llvm::orc;
 
-const char *const FixturesPath = "/opt/mull-jit-lab/lab-jit-objc/fixtures/bitcode";
+const char *const FixturesPath = "/opt/llvm-jit-objc/fixtures/bitcode";
 
 static
 llvm::orc::RTDyldObjectLinkingLayer::MemoryManagerGetter getMemoryManager() {
