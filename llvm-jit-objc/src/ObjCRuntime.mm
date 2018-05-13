@@ -221,8 +221,14 @@ Class mull::objc::Runtime::registerOneClass(class64_t **classrefPtr,
 
   assert(objc_getClass(classref->getDataPointer()->name) == NULL);
 
+  assert(objc_classIsRegistered((Class)classref) == false);
   Class cllll = objc_readClassPair((Class)classref, NULL);
-  assert(cllll);
+
+  // The following might be wrong:
+  // The class is registered by objc_readClassPair but we still hack on its
+  // `flags` below and call objc_registerClassPair to make sure we can dispose
+  // it with objc_disposeClassPair when JIT deallocates.
+  assert(objc_classIsRegistered((Class)cllll));
 
   here_objc_class *runtimeCllll = (here_swift_class_t *)cllll;
   here_objc_class *runtimeMetaCllll = (here_objc_class *)runtimeCllll->ISA();

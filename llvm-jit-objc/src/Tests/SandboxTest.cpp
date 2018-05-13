@@ -16,7 +16,7 @@
 using namespace llvm;
 using namespace llvm::orc;
 
-static const char *const FixturesPath = "/opt/mull-jit-lab/lab-jit-objc/fixtures/bitcode";
+static const char *const FixturesPath = "/opt/llvm-jit-objc/fixtures/bitcode";
 
 TEST(DISABLED_XCTest_ObjC, Test_001_Minimal) {
   // These lines are needed for TargetMachine TM to be created correctly.
