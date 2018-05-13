@@ -22,7 +22,7 @@
 using namespace llvm;
 using namespace llvm::orc;
 
-static const char *const FixturesPath = "/opt/mull-jit-lab/lab-jit-objc/fixtures/bitcode";
+static const char *const FixturesPath = "/opt/llvm-jit-objc/fixtures/bitcode";
 
 static
 llvm::orc::RTDyldObjectLinkingLayer::MemoryManagerGetter getMemoryManager() {
@@ -112,7 +112,7 @@ static void loadSwiftLibrariesOrExit() {
   }
 }
 
-TEST(DISABLED_XCTest_Swift, Test_001_Minimal) {
+TEST(XCTest_Swift, Test_001_Minimal) {
     // These lines are needed for TargetMachine TM to be created correctly.
   llvm::InitializeNativeTarget();
   llvm::InitializeNativeTargetAsmPrinter();
@@ -177,7 +177,11 @@ TEST(DISABLED_XCTest_Swift, Test_001_Minimal) {
   const char *clzName = object_getClassName(ivv);
   assert(strcmp((char *)clzName, "Swift._EmptyArrayStorage") == 0);
 
-  void *runnerPtr = sys::DynamicLibrary::SearchForAddressOfSymbol("CustomXCTestRunnerRun");
+  void *runnerPtr = sys::DynamicLibrary::SearchForAddressOfSymbol("CustomXCTestRunnerRunAll");
   auto runnerFPtr = ((int (*)(void))runnerPtr);
+  if (runnerFPtr == nullptr) {
+    errs() << "Could not find CustomXCTestRunner function: CustomXCTestRunnerRunAll()" << "\n";
+    exit(1);
+  }
   int result = runnerFPtr();
 }
