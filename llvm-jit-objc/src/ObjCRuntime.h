@@ -44,6 +44,8 @@ public:
                                       uintptr_t sectionSize);
   void addClassesFromSuperclassRefsSection(void *sectionPtr,
                                            uintptr_t sectionSize);
+  void addCategoriesFromSection(void *sectionPtr,
+                                uintptr_t sectionSize);
 
   void registerClasses();
 };

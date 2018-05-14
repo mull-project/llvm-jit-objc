@@ -158,6 +158,56 @@ void mull::objc::Runtime::addClassesFromSuperclassRefsSection(void *sectionPtr,
   }
 }
 
+void mull::objc::Runtime::addCategoriesFromSection(void *sectionPtr,
+                                                   uintptr_t sectionSize) {
+  errs() << "Runtime> addCategoriesFromSection" << "\n";
+
+  category_t **categories = (category_t **)sectionPtr;
+  uint32_t count = sectionSize / 8;
+
+  for (uint32_t i = 0; i < count / 2; i++) {
+    category_t *category = categories[i];
+    Class clz = (Class)category->cls;
+    Class metaClz = objc_getMetaClass(class_getName(clz));
+
+    /* Instance methods */
+    const method_list64_t *clzMethodListPtr = (const method_list64_t *)category->instanceMethods;
+    if (clzMethodListPtr) {
+      const method64_t *methods = (const method64_t *)clzMethodListPtr->getFirstMethodPointer();
+
+      for (uint32_t i = 0; i < clzMethodListPtr->count; i++) {
+        const method64_t *methodPtr = &methods[i];
+
+        IMP imp = (IMP)methodPtr->imp;
+
+        BOOL success = class_addMethod(clz,
+                                       sel_registerName(sel_getName(methodPtr->name)),
+                                       (IMP)imp,
+                                       (const char *)methodPtr->types);
+        assert(success);
+      }
+    }
+
+    /* Class methods */
+    const method_list64_t *metaclassMethodListPtr = (const method_list64_t *)category->classMethods;
+    if (metaclassMethodListPtr) {
+      const method64_t *methods = (const method64_t *)metaclassMethodListPtr->getFirstMethodPointer();
+
+      for (uint32_t i = 0; i < clzMethodListPtr->count; i++) {
+        const method64_t *methodPtr = &methods[i];
+
+        IMP imp = (IMP)methodPtr->imp;
+
+        BOOL success = class_addMethod(metaClz,
+                                       sel_registerName(sel_getName(methodPtr->name)),
+                                       (IMP)imp,
+                                       (const char *)methodPtr->types);
+        assert(success);
+      }
+    }
+  }
+}
+
 #pragma mark - Private
 
 void mull::objc::Runtime::registerClasses() {

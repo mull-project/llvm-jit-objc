@@ -87,4 +87,10 @@ void ObjCEnabledMemoryManager::registerObjC() {
       runtime.addClassesFromSuperclassRefsSection(entry.pointer, entry.size);
     }
   }
+
+  for (ObjectSectionEntry &entry: objcSections) {
+    if (entry.section.find("__objc_catlist") != StringRef::npos) {
+      runtime.addCategoriesFromSection(entry.pointer, entry.size);
+    }
+  }
 }

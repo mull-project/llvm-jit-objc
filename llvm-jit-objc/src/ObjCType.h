@@ -860,3 +860,14 @@ struct here_swift_class_t : here_objc_class {
     return (void *)((uint8_t *)this - classAddressOffset);
   }
 };
+
+struct category_t {
+  const char *name;
+  mull::objc::class64_t *cls;
+  struct method_list_t *instanceMethods;
+  struct method_list_t *classMethods;
+  struct protocol_list_t *protocols;
+  struct property_list_t *instanceProperties;
+    // Fields below this point are not always present on disk.
+  struct property_list_t *_classProperties;
+};
