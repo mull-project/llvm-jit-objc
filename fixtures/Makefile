@@ -22,6 +22,7 @@ FIXTURES_IN=001_minimal_test \
             004_calling_a_super_method_on_class \
             005_ivars_of_class_and_superclass \
             006_properties_of_class_and_superclass \
+            007_category_basic \
             xctest_objc_001_minimal_xctestcase_run
 
 FIXTURES_OUT_BC=$(FIXTURES_IN:%=$(OUTPUT_PATH)/%.bc)
