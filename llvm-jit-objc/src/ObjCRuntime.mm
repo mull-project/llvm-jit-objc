@@ -8,6 +8,8 @@
 #include <iostream>
 #include <inttypes.h>
 
+extern "C" Class objc_readClassPair(Class bits, const struct objc_image_info *info);
+
 using namespace objc;
 
 namespace mull { namespace objc {
@@ -253,8 +255,6 @@ void mull::objc::Runtime::registerClasses() {
   assert(classesToRegister.empty());
 }
 
-extern "C" Class objc_readClassPair(Class bits, const struct objc_image_info *info);
-
 Class mull::objc::Runtime::registerOneClass(class64_t **classrefPtr,
                                             Class superclass) {
 
@@ -269,28 +269,33 @@ Class mull::objc::Runtime::registerOneClass(class64_t **classrefPtr,
   classRefs.push_back(classref);
   metaclassRefs.push_back(metaclassRef);
 
-  assert(objc_getClass(classref->getDataPointer()->name) == NULL);
-
+  if (objc_getClass(classref->getDataPointer()->name) != nullptr) {
+    errs() << "JIT Error: Objective-C class is already registered: "
+           << classref->getDataPointer()->name << "\n";
+    exit(1);
+  }
   assert(objc_classIsRegistered((Class)classref) == false);
-  Class cllll = objc_readClassPair((Class)classref, NULL);
+
+  Class runtimeClass = objc_readClassPair((Class)classref, NULL);
+  assert(runtimeClass);
 
   // The following might be wrong:
   // The class is registered by objc_readClassPair but we still hack on its
   // `flags` below and call objc_registerClassPair to make sure we can dispose
   // it with objc_disposeClassPair when JIT deallocates.
-  assert(objc_classIsRegistered((Class)cllll));
+  assert(objc_classIsRegistered((Class)runtimeClass));
 
-  here_objc_class *runtimeCllll = (here_swift_class_t *)cllll;
-  here_objc_class *runtimeMetaCllll = (here_objc_class *)runtimeCllll->ISA();
+  here_objc_class *runtimeClassInternal = (here_objc_class *)runtimeClass;
+  here_objc_class *runtimeMetaclassInternal = (here_objc_class *)runtimeClassInternal->ISA();
 
 #define RW_CONSTRUCTING       (1<<26)
-  here_class_rw_t *sourceClassData = runtimeCllll->data();
-  here_class_rw_t *sourceMetaclassData = (here_class_rw_t *)runtimeMetaCllll->data();
+  here_class_rw_t *sourceClassData = runtimeClassInternal->data();
+  here_class_rw_t *sourceMetaclassData = (here_class_rw_t *)runtimeMetaclassInternal->data();
   sourceClassData->flags |= RW_CONSTRUCTING;
   sourceMetaclassData->flags |= RW_CONSTRUCTING;
-  objc_registerClassPair(cllll);
+  objc_registerClassPair(runtimeClass);
 
-  return cllll;
+  return runtimeClass;
 }
 
 } }
