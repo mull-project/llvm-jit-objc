@@ -1,4 +1,4 @@
-#include "ObjCEnabledMemoryManager.h"
+#include "llvm-jit-objc/ObjCEnabledMemoryManager.h"
 
 #include "ObjCResolver.h"
 #include "ObjCRuntime.h"
@@ -17,7 +17,7 @@
 using namespace llvm;
 using namespace llvm::orc;
 
-static const char *const FixturesPath = "/opt/llvm-jit-objc/fixtures/bitcode";
+static const char *const FixturesPath = "/opt/CustomXCTestRunner";
 
 static
 llvm::orc::RTDyldObjectLinkingLayer::MemoryManagerGetter getMemoryManager() {
@@ -42,14 +42,14 @@ TEST(XCTest_ObjC, Test_001_Minimal) {
   assert(!sys::DynamicLibrary::LoadLibraryPermanently(
     "/Applications/Xcode-9.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework/XCTest"
   ));
-  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-    "/opt/CustomXCTestRunner/CustomXCTestRunner.dylib"
-  ));
+//  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
+//    "/opt/CustomXCTestRunner/CustomXCTestRunner.dylib"
+//  ));
 
   llvm::LLVMContext llvmContext;
 
   char fixturePath[255];
-  snprintf(fixturePath, sizeof(fixturePath), "%s/%s", FixturesPath, "xctest_objc_001_minimal_xctestcase_run.bc");
+  snprintf(fixturePath, sizeof(fixturePath), "%s/%s", FixturesPath, "CustomXCTestRunner.bc");
   auto objcModule = loadModuleAtPath(fixturePath, llvmContext);
 
   RTDyldObjectLinkingLayer objectLayer(getMemoryManager());
@@ -78,12 +78,12 @@ TEST(XCTest_ObjC, Test_001_Minimal) {
 
   Error err = objectLayer.emitAndFinalize(objcHandle);
 
-  void *runnerPtr = sys::DynamicLibrary::SearchForAddressOfSymbol("CustomXCTestRunnerRunAll");
-  auto runnerFPtr = ((int (*)(void))runnerPtr);
-  if (runnerFPtr == nullptr) {
-    errs() << "Could not find CustomXCTestRunner function: CustomXCTestRunnerRunAll()" << "\n";
-    exit(1);
-  }
-  int result = runnerFPtr();
-  ASSERT_EQ(result, 0);
+//  void *runnerPtr = sys::DynamicLibrary::SearchForAddressOfSymbol("CustomXCTestRunnerRunAll");
+//  auto runnerFPtr = ((int (*)(void))runnerPtr);
+//  if (runnerFPtr == nullptr) {
+//    errs() << "Could not find CustomXCTestRunner function: CustomXCTestRunnerRunAll()" << "\n";
+//    exit(1);
+//  }
+//  int result = runnerFPtr();
+//  ASSERT_EQ(result, 0);
 }

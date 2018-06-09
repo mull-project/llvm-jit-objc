@@ -16,7 +16,7 @@ help: ## Show this help message.
 xcode.build: ## Build Xcode project with CMake.
 	mkdir -p $(BUILD_DIR_XCODE)
 
-	rm -rfv $(BUILD_DIR_XCODE)/CMakeCache.txt
+	# rm -rfv $(BUILD_DIR_XCODE)/CMakeCache.txt
 	cd $(BUILD_DIR_XCODE) && cmake ../ -G Xcode
 
 xcode.rebuild: xcode.build xcode.reopen ## Build Xcode project with CMake, kill Xcode, reopen the project in Xcode

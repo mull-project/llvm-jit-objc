@@ -1,4 +1,4 @@
-#include "ObjCEnabledMemoryManager.h"
+#include <llvm-jit-objc/ObjCEnabledMemoryManager.h>
 
 #include <llvm/Support/raw_ostream.h>
 
@@ -21,7 +21,7 @@ ObjCEnabledMemoryManager::allocateDataSection(uintptr_t Size,
 
   int numRegisteredClasses = objc_getClassList(NULL, 0);
   assert(numRegisteredClasses > 0);
-  errs() << "OBJC CREATED CLASSES constr: " << numRegisteredClasses << "\n";
+  //errs() << "OBJC CREATED CLASSES constr: " << numRegisteredClasses << "\n";
 
   if (SectionName.find("objc") != llvm::StringRef::npos) {
     errs() << "MullMemoryManager::allocateDataSection(objc) -- "
