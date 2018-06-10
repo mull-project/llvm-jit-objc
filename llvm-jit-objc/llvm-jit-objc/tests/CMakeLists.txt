@@ -4,6 +4,7 @@ set(sources
   XCTestObjCTest.cpp
   XCTestSwiftTest.cpp
   TestHelpers.cpp
+  TestHelpers.h
 )
 
 add_executable(llvm-jit-objc-tests ${sources} ${headers})
