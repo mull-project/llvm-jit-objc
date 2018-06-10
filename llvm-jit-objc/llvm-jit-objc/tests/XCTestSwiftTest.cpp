@@ -40,17 +40,13 @@ TEST(XCTest_Swift, Test_001_Minimal) {
 
   llvm::sys::DynamicLibrary::LoadLibraryPermanently(nullptr);
 
-  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-    "/System/Library/Frameworks/Foundation.framework/Versions/Current/Foundation"
-  ));
-  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-    "/Applications/Xcode-9.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework/XCTest"
-  ));
+  SwiftRuntimeSetup::loadFoundation();
+  SwiftRuntimeSetup::loadXCTest();
+  SwiftRuntimeSetup::loadSwiftLibraries();
+
   assert(!sys::DynamicLibrary::LoadLibraryPermanently(
     "/opt/CustomXCTestRunner/CustomXCTestRunner.dylib"
   ));
-
-  SwiftRuntimeSetup::loadLibraries();
 
   llvm::LLVMContext llvmContext;
 

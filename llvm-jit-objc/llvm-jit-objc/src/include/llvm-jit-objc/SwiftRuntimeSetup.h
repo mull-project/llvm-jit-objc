@@ -1,9 +1,9 @@
 #pragma once
 
 class SwiftRuntimeSetup {
-
 public:
-  static void loadLibraries();
-  
-};
+  static void loadFoundation();
+  static void loadXCTest();
+  static void loadSwiftLibraries();
 
+};

@@ -3,6 +3,7 @@
 #include "ObjCRuntime.h"
 #include "ObjCResolver.h"
 #include "TestHelpers.h"
+#include "SwiftRuntimeSetup.h"
 
 #include <llvm/ExecutionEngine/ExecutionEngine.h>
 #include <llvm/ExecutionEngine/Orc/CompileUtils.h>
@@ -36,9 +37,7 @@ TEST(LLVMJIT, Test001_BasicTest) {
 
   llvm::sys::DynamicLibrary::LoadLibraryPermanently(nullptr);
 
-  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-    "/System/Library/Frameworks/Foundation.framework/Versions/Current/Foundation"
-  ));
+  SwiftRuntimeSetup::loadFoundation();
 
   llvm::LLVMContext llvmContext;
 
@@ -97,10 +96,7 @@ TEST(LLVMJIT, Test002_ClassMethodCall) {
   llvm::InitializeNativeTargetAsmParser();
 
   llvm::sys::DynamicLibrary::LoadLibraryPermanently(nullptr);
-
-  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-                                                      "/System/Library/Frameworks/Foundation.framework/Versions/Current/Foundation"
-                                                      ));
+  SwiftRuntimeSetup::loadFoundation();
 
   llvm::LLVMContext llvmContext;
 
@@ -160,9 +156,7 @@ TEST(LLVMJIT, Test003_CallingASuperMethodOnInstance) {
 
   llvm::sys::DynamicLibrary::LoadLibraryPermanently(nullptr);
 
-  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-                                                      "/System/Library/Frameworks/Foundation.framework/Versions/Current/Foundation"
-                                                      ));
+  SwiftRuntimeSetup::loadFoundation();
 
   llvm::LLVMContext llvmContext;
 
@@ -222,9 +216,7 @@ TEST(LLVMJIT, Test004_CallingASuperMethodOnClass) {
 
   llvm::sys::DynamicLibrary::LoadLibraryPermanently(nullptr);
 
-  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-                                                      "/System/Library/Frameworks/Foundation.framework/Versions/Current/Foundation"
-                                                      ));
+  SwiftRuntimeSetup::loadFoundation();
 
   llvm::LLVMContext llvmContext;
 
@@ -284,9 +276,7 @@ TEST(LLVMJIT, Test005_IvarsOfClassAndSuperclass) {
 
   llvm::sys::DynamicLibrary::LoadLibraryPermanently(nullptr);
 
-  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-    "/System/Library/Frameworks/Foundation.framework/Versions/Current/Foundation"
-  ));
+  SwiftRuntimeSetup::loadFoundation();
 
   llvm::LLVMContext llvmContext;
 
@@ -346,9 +336,7 @@ TEST(LLVMJIT, Test006_PropertiesOfClassAndSuperclass) {
 
   llvm::sys::DynamicLibrary::LoadLibraryPermanently(nullptr);
 
-  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-                                                      "/System/Library/Frameworks/Foundation.framework/Versions/Current/Foundation"
-                                                      ));
+  SwiftRuntimeSetup::loadFoundation();
 
   llvm::LLVMContext llvmContext;
 

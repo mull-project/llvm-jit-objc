@@ -3,6 +3,7 @@
 #include "ObjCResolver.h"
 #include "ObjCRuntime.h"
 #include "TestHelpers.h"
+#include "SwiftRuntimeSetup.h"
 
 #include <llvm/ExecutionEngine/ExecutionEngine.h>
 #include <llvm/ExecutionEngine/Orc/CompileUtils.h>
@@ -36,12 +37,9 @@ TEST(XCTest_ObjC, Test_001_Minimal) {
 
   llvm::sys::DynamicLibrary::LoadLibraryPermanently(nullptr);
 
-  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-    "/System/Library/Frameworks/Foundation.framework/Versions/Current/Foundation"
-  ));
-  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-    "/Applications/Xcode-9.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework/XCTest"
-  ));
+  SwiftRuntimeSetup::loadFoundation();
+  SwiftRuntimeSetup::loadXCTest();
+
 //  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
 //    "/opt/CustomXCTestRunner/CustomXCTestRunner.dylib"
 //  ));
