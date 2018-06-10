@@ -74,13 +74,7 @@ TEST(DISABLED_Sandbox, Test) {
 
   llvm::sys::DynamicLibrary::LoadLibraryPermanently(nullptr);
 
-  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-                                                      "/System/Library/Frameworks/Foundation.framework/Versions/Current/Foundation"
-                                                      ));
-  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-                                                      "/Applications/Xcode-9.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework/XCTest"
-                                                      ));
-  SwiftRuntimeSetup::loadLibraries();
+  SwiftRuntimeSetup::loadSwiftLibraries();
 
   llvm::LLVMContext llvmContext;
 

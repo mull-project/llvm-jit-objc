@@ -53,7 +53,19 @@ const char *const SwiftLibraries[] = {
   SwiftDyLibPath::SwiftOnoneSupport,
 };
 
-void SwiftRuntimeSetup::loadLibraries() {
+void SwiftRuntimeSetup::loadFoundation() {
+  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
+    "/System/Library/Frameworks/Foundation.framework/Versions/Current/Foundation"
+  ));
+}
+
+void SwiftRuntimeSetup::loadXCTest() {
+  assert(!sys::DynamicLibrary::LoadLibraryPermanently(
+    "/Applications/Xcode-9.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework/XCTest"
+  ));
+}
+
+void SwiftRuntimeSetup::loadSwiftLibraries() {
   char fullLibraryPath[255];
   std::string errorMessage;
 
