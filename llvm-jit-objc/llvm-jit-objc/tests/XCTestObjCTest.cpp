@@ -1,4 +1,4 @@
-#include "llvm-jit-objc/ObjCEnabledMemoryManager.h"
+#include <llvm-jit-objc/ObjCEnabledMemoryManager.h>
 
 #include "ObjCResolver.h"
 #include "ObjCRuntime.h"

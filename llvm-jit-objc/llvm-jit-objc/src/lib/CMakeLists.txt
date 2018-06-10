@@ -7,7 +7,7 @@ set(sources
   "${CMAKE_CURRENT_LIST_DIR}/DebugUtils.cpp"
 )
 
-target_sources(llvm-jit-objc PUBLIC ${sources})
+target_sources(llvm-jit-objc PRIVATE ${sources})
 
 # # The following is needed to make CMake to generate a folder structure in Xcode
 # # that corresponds to a physical folder structure.
