@@ -7,6 +7,7 @@ set(headers
   "${CMAKE_CURRENT_LIST_DIR}/llvm-jit-objc/ObjCRuntimeHelpers.h"
   "${CMAKE_CURRENT_LIST_DIR}/llvm-jit-objc/ObjCEnabledMemoryManager.h"
   "${CMAKE_CURRENT_LIST_DIR}/llvm-jit-objc/ObjCType.h"
+  "${CMAKE_CURRENT_LIST_DIR}/llvm-jit-objc/SwiftRuntimeSetup.h"
   "${CMAKE_CURRENT_LIST_DIR}/llvm-jit-objc/DebugUtils.h"
 )
 target_sources(llvm-jit-objc PRIVATE ${headers})
