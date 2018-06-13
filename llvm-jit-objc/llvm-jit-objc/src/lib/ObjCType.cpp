@@ -75,7 +75,7 @@ namespace mull { namespace objc {
     if (level == Clazz) {
       Class superClz = (Class)getSuperclassPointer();
       if (objc_classIsRegistered(superClz)) {
-        os << padding << "\t(registered) " << object_getClassName(superClz) << "\n";
+        os << padding << "\t(registered) " << object_getClassName((id)superClz) << "\n";
       } else {
         class64_t *superclassPointer = getSuperclassPointer();
         os << superclassPointer->getDebugDescription(IsaOrSuperclass);

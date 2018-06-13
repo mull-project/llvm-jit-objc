@@ -73,7 +73,7 @@ void mull::objc::Runtime::addClassesFromClassRefsSection(void *sectionPtr,
 
   for (uint32_t i = 0; i < count / 2; i++) {
     Class *classrefPtr = (&classrefs[i]);
-    const char *className = object_getClassName(*classrefPtr);
+    const char *className = object_getClassName((id)*classrefPtr);
     assert(className);
     errs() << "Considering " << className << "\n";
 
@@ -127,7 +127,7 @@ void mull::objc::Runtime::addClassesFromSuperclassRefsSection(void *sectionPtr,
     assert(refType != 0);
     const char *className;
     if (ref == NULL) {
-      className = object_getClassName(classref);
+      className = object_getClassName((id)classref);
 
       errs() << "Class is already registered (not by us) - " << className << "\n";
     } else {
@@ -138,7 +138,7 @@ void mull::objc::Runtime::addClassesFromSuperclassRefsSection(void *sectionPtr,
       className = objcClass->data()->ro->name;
     }
     else if (refType == 2) {
-      Class classForMetaClass = objc_getClass(object_getClassName(classref));
+      Class classForMetaClass = objc_getClass(object_getClassName((id)classref));
       assert(classForMetaClass);
       className = objcClass->data()->ro->name;
     }

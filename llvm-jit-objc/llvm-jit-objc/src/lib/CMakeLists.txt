@@ -1,9 +1,9 @@
 set(sources
   "${CMAKE_CURRENT_LIST_DIR}/ObjCResolver.cpp"
-  "${CMAKE_CURRENT_LIST_DIR}/ObjCRuntime.mm"
-  "${CMAKE_CURRENT_LIST_DIR}/ObjCRuntimeHelpers.mm"
+  "${CMAKE_CURRENT_LIST_DIR}/ObjCRuntime.cpp"
+  "${CMAKE_CURRENT_LIST_DIR}/ObjCRuntimeHelpers.cpp"
   "${CMAKE_CURRENT_LIST_DIR}/ObjCEnabledMemoryManager.cpp"
-  "${CMAKE_CURRENT_LIST_DIR}/ObjCType.mm"
+  "${CMAKE_CURRENT_LIST_DIR}/ObjCType.cpp"
   "${CMAKE_CURRENT_LIST_DIR}/SwiftRuntimeSetup.cpp"
   "${CMAKE_CURRENT_LIST_DIR}/DebugUtils.cpp"
 )
