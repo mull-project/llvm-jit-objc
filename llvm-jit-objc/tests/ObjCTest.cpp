@@ -4,6 +4,7 @@
 #include "llvm-jit-objc/SwiftRuntimeSetup.h"
 
 #include "TestHelpers.h"
+#include "CustomXCTestRunnerBinding.h"
 
 #include <llvm/ExecutionEngine/ExecutionEngine.h>
 #include <llvm/ExecutionEngine/Orc/CompileUtils.h>

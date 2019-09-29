@@ -4,6 +4,7 @@
 #include "llvm-jit-objc/ObjCRuntimeHelpers.h"
 #include "llvm-jit-objc/SwiftRuntimeSetup.h"
 
+#include "CustomXCTestRunnerBinding.h"
 #include "TestHelpers.h"
 
 #include <objc/message.h>
@@ -45,8 +46,9 @@ TEST(XCTest_Swift, Test_001_Minimal) {
   SwiftRuntimeSetup::loadXCTest();
   SwiftRuntimeSetup::loadSwiftLibraries();
 
+
   assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-    "/opt/CustomXCTestRunner/CustomXCTestRunner.dylib"
+    CustomXCTestRunnerBinding::getCustomXCTestRunnerPath().c_str()
   ));
 
   llvm::LLVMContext llvmContext;
