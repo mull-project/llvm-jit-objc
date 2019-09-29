@@ -15,7 +15,9 @@ function(llvm_get_cxx_flags OUT_CXX_FLAGS)
     COMMAND ${config_command}
     RESULT_VARIABLE HAD_ERROR
     OUTPUT_VARIABLE config_output
+    OUTPUT_STRIP_TRAILING_WHITESPACE
   )
+
   if(NOT HAD_ERROR)
     # Remove -O3 or any other -O? flags
     string(REGEX REPLACE "-O." "" config_output "${config_output}")
@@ -25,6 +27,7 @@ function(llvm_get_cxx_flags OUT_CXX_FLAGS)
   else()
     string(REPLACE ";" " " config_command_str "${config_command}")
   endif()
+
   set(${OUT_CXX_FLAGS} ${llvm_cxx_flags} PARENT_SCOPE)
 endfunction()
 

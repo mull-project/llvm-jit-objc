@@ -1,9 +1,9 @@
 #include <llvm-jit-objc/ObjCEnabledMemoryManager.h>
+#include "llvm-jit-objc/ObjCResolver.h"
+#include "llvm-jit-objc/ObjCRuntime.h"
+#include "llvm-jit-objc/SwiftRuntimeSetup.h"
 
-#include "ObjCResolver.h"
-#include "ObjCRuntime.h"
 #include "TestHelpers.h"
-#include "SwiftRuntimeSetup.h"
 
 #include <llvm/ExecutionEngine/ExecutionEngine.h>
 #include <llvm/ExecutionEngine/Orc/CompileUtils.h>

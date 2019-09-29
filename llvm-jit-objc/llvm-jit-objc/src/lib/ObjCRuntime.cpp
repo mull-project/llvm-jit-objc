@@ -1,7 +1,7 @@
-#include "ObjCRuntime.h"
+#include "llvm-jit-objc/ObjCRuntime.h"
 
-#include "DebugUtils.h"
-#include "ObjCRuntimeHelpers.h"
+#include "llvm-jit-objc/DebugUtils.h"
+#include "llvm-jit-objc/ObjCRuntimeHelpers.h"
 
 #include <objc/message.h>
 

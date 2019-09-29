@@ -1,9 +1,10 @@
-#include "ObjCEnabledMemoryManager.h"
-#include "ObjCResolver.h"
-#include "ObjCRuntime.h"
+#include "llvm-jit-objc/ObjCEnabledMemoryManager.h"
+#include "llvm-jit-objc/ObjCResolver.h"
+#include "llvm-jit-objc/ObjCRuntime.h"
+#include "llvm-jit-objc/ObjCRuntimeHelpers.h"
+#include "llvm-jit-objc/SwiftRuntimeSetup.h"
+
 #include "TestHelpers.h"
-#include "ObjCRuntimeHelpers.h"
-#include "SwiftRuntimeSetup.h"
 
 #include <objc/message.h>
 #include <gtest/gtest.h>
