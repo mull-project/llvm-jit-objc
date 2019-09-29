@@ -11,8 +11,6 @@ set(MACOS_FRAMEWORKS_DIR "/Applications/Xcode.app/Contents/Developer/Platforms/M
 
 set(XCTEST_FLAGS -F${MACOS_FRAMEWORKS_DIR} -framework XCTest)
 
-#message(FATAL_ERROR "foo ${SYSROOT}")
-
 target_compile_options(CustomXCTestRunner
   PRIVATE
   -fobjc-arc
