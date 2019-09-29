@@ -9,6 +9,13 @@ See these articles for a background:
 - [LLVM JIT, Objective-C and Swift on macOS: knowledge dump](https://stanislaw.github.io/2018/09/03/llvm-jit-objc-and-swift-knowledge-dump.html)
 - [Mutation testing for Swift with Mull: how it could work. Looking for contributors.](https://stanislaw.github.io/2018/09/03/mull-and-swift-how-it-almost-works.html)
 
+**Note:** Please keep in mind, that the code covers only very basics of running
+Objective-C with LLVM JIT. The code is quite raw and you can quickly hit some
+weird crashes or unexpected behavior once you start adding some new
+functionality and test cases. See also this Twitter thread where the engineer
+from Apple says that this project's implementation is based on a very unstable
+API: https://twitter.com/gparker/status/1036671921616609280.
+
 ## Setup
 
 ### Preconditions
