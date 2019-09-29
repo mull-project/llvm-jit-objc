@@ -1,6 +1,7 @@
 **/build/**
 **/Build/**
 **/BuildXcode/**
+**/cmake-build-debug/**
 *.o
 *.bc
 *.ll

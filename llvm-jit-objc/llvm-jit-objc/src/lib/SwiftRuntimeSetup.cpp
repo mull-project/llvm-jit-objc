@@ -1,4 +1,4 @@
-#include "SwiftRuntimeSetup.h"
+#include "llvm-jit-objc/SwiftRuntimeSetup.h"
 
 #include <llvm/Support/DynamicLibrary.h>
 #include <llvm/Support/raw_ostream.h>
@@ -29,7 +29,7 @@ namespace SwiftDyLibPath {
   static const char *const SwiftOnoneSupport = "libswiftSwiftOnoneSupport.dylib";
 }
 
-const char *const SwiftLibrariesPath = "/Applications/Xcode-9.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx";
+const char *const SwiftLibrariesPath = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx";
 
 const char *const SwiftLibraries[] = {
   SwiftDyLibPath::Core,
@@ -61,7 +61,7 @@ void SwiftRuntimeSetup::loadFoundation() {
 
 void SwiftRuntimeSetup::loadXCTest() {
   assert(!sys::DynamicLibrary::LoadLibraryPermanently(
-    "/Applications/Xcode-9.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework/XCTest"
+    "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework/XCTest"
   ));
 }
 

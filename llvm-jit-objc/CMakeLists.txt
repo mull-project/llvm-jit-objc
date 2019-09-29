@@ -10,11 +10,10 @@ SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
 SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib" "${LLVM_LIB_PATH}")
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
-add_subdirectory(llvm-jit-objc)
-
-# TODO: There should be a better way of adding the google-test target in case 
+# TODO: There should be a better way of adding the google-test target in case
 # if it does not exist in a parent project.
 if (NOT TARGET google-test)
   add_subdirectory(googletest)
 endif()
 
+add_subdirectory(llvm-jit-objc)

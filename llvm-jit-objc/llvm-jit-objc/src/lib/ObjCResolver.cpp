@@ -1,12 +1,12 @@
-#include "ObjCResolver.h"
+#include "llvm-jit-objc/ObjCResolver.h"
+
+#include "llvm-jit-objc/ObjCType.h"
 
 #include <llvm/ExecutionEngine/RTDyldMemoryManager.h>
 #include <llvm/Support/raw_ostream.h>
 
 #include <objc/message.h>
 #include <objc/runtime.h>
-
-#include "ObjCType.h"
 
 using namespace llvm;
 using namespace mull::objc;
@@ -23,7 +23,7 @@ extern "C" int objc_printf( const char * format, ... ) {
 }
 
 JITSymbol ObjCResolver::findSymbol(const std::string &Name) {
-  errs() << "ObjCResolver::findSymbol> " << Name << "\n";
+  //errs() << "ObjCResolver::findSymbol> " << Name << "\n";
   if (Name == "_printf") {
     return
       JITSymbol((uint64_t)objc_printf,

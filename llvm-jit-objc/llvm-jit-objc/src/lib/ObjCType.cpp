@@ -1,7 +1,7 @@
-#include "ObjCType.h"
+#include "llvm-jit-objc/ObjCType.h"
 
-#include "ObjCRuntimeHelpers.h"
-#include "DebugUtils.h"
+#include "llvm-jit-objc/ObjCRuntimeHelpers.h"
+#include "llvm-jit-objc/DebugUtils.h"
 
 #include <llvm/Support/raw_ostream.h>
 

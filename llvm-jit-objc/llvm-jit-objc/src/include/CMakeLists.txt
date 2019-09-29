@@ -1,5 +1,5 @@
 
-target_include_directories(llvm-jit-objc PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/**)
+target_include_directories(llvm-jit-objc PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 set(headers
   "${CMAKE_CURRENT_LIST_DIR}/llvm-jit-objc/ObjCResolver.h"
