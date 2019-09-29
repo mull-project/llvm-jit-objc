@@ -1,12 +1,3 @@
-# This command rewrites "@CMAKE_CURRENT_BINARY_DIR@" value in the .cpp file
-# with a real value.
-file(GENERATE
-  OUTPUT
-  ${CMAKE_CURRENT_BINARY_DIR}/CustomXCTestRunnerBinding.cpp
-  INPUT
-  ${CMAKE_CURRENT_LIST_DIR}/CustomXCTestRunnerBinding.cpp
-)
-
 set(sources
   ObjCTest.cpp
   SandboxTest.cpp
@@ -25,3 +16,9 @@ target_link_libraries(llvm-jit-objc-tests llvm-jit-objc google-test)
 include_directories("${CMAKE_SOURCE_DIR}/googletest/include")
 
 target_link_libraries(llvm-jit-objc-tests ${LLVM_DEPENDENCIES})
+
+configure_file (
+  ${CMAKE_CURRENT_LIST_DIR}/CustomXCTestRunnerBinding.cpp
+  ${CMAKE_CURRENT_BINARY_DIR}/CustomXCTestRunnerBinding.cpp
+  @ONLY
+)

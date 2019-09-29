@@ -24,3 +24,15 @@ target_link_options(CustomXCTestRunner
   PRIVATE
   -shared -undefined dynamic_lookup
 )
+
+set_target_properties(CustomXCTestRunner
+  PROPERTIES
+  LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+  LIBRARY_OUTPUT_DIRECTORY_DEBUG "${CMAKE_BINARY_DIR}/lib"
+  LIBRARY_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/lib"
+)
+
+set(CUSTOM_XCTEST_RUNNER_BINARY_PATH
+  ${CMAKE_BINARY_DIR}/lib/libCustomXCTestRunner.dylib
+  PARENT_SCOPE
+)
