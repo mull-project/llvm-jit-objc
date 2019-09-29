@@ -11,4 +11,5 @@ SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib" "${LLVM_LIB_PATH}")
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 add_subdirectory(googletest)
+add_subdirectory(CustomXCTestRunner)
 add_subdirectory(llvm-jit-objc)

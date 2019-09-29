@@ -1,0 +1,6 @@
+**/Build/**
+**/xcuserdata/**
+*.xcworkspacedata
+*.bc
+*.dylib
+
