@@ -83,5 +83,5 @@ set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${LLVM_LINK_FLAGS}")
 # )
 # set_target_properties(llvm-jit-objc PROPERTIES LINK_FLAGS "${link_flags}")
 
-add_subdirectory(llvm-jit-objc/src)
+add_subdirectory(src)
 add_subdirectory(llvm-jit-objc/tests)
