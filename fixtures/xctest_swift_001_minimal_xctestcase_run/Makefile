@@ -4,7 +4,7 @@
 help: ## Show this help message.
 	@grep -E '^[0-9a-zA-Z_\.-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-SWIFTCC=/Applications/Xcode-9.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift
+SWIFTCC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift
 # CC=/opt/llvm-5.0.0/bin/clang
 SYSROOT=$(shell xcrun --sdk macosx --show-sdk-path)
 

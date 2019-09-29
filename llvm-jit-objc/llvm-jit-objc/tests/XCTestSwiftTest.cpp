@@ -93,7 +93,7 @@ TEST(XCTest_Swift, Test_001_Minimal) {
   assert(iv);
 
   const char *clzName = object_getClassName(ivv);
-  assert(strcmp((char *)clzName, "Swift._EmptyArrayStorage") == 0);
+  assert(strcmp((char *)clzName, "Swift.__EmptyArrayStorage") == 0);
 
   void *runnerPtr = sys::DynamicLibrary::SearchForAddressOfSymbol("CustomXCTestRunnerRunAll");
   auto runnerFPtr = ((int (*)(void))runnerPtr);
