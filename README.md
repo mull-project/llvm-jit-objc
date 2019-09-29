@@ -26,6 +26,23 @@ You need to have a binary version of LLVM 6 installed on your machine in
 The binary distribution of LLVM 6 can be found on
 [LLVM Download Page](http://releases.llvm.org/download.html) page.
 
+### Cloning the repository
+
+Please clone the repository to the `/opt/llvm-jit-objc`. Putting everything
+to the `/opt` was an old convention that allowed faster prototyping. This
+should be changed in the future but for now many things are hardcoded to the
+`/opt/llvm-jit-objc` folder.
+
+### Generating fixtures
+
+Generation of the fixtures is not (yet) part of CMake project so you have to
+create them manually:
+
+```bash
+cd fixtures && make all
+cd fixtuers/xctest_swift_001_minimal_xctestcase_run/ && make compile
+```
+
 ### Creating a project
 
 The project works on macOS only.
