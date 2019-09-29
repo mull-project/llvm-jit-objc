@@ -8,7 +8,7 @@
 
 std::string CustomXCTestRunnerBinding::getCustomXCTestRunnerPath() {
   // Value is provided by CMake. See CMakeLists.txt.
-  std::string customXCTestRunnerPath = "$<TARGET_FILE:CustomXCTestRunner>";
+  std::string customXCTestRunnerPath = "@CUSTOM_XCTEST_RUNNER_BINARY_PATH@";
 
   assert(std::ifstream(customXCTestRunnerPath.c_str()).good());
 
