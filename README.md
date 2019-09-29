@@ -40,7 +40,7 @@ create them manually:
 
 ```bash
 cd fixtures && make all
-cd fixtuers/xctest_swift_001_minimal_xctestcase_run/ && make compile
+cd fixtures/xctest_swift_001_minimal_xctestcase_run/ && make compile
 ```
 
 ### Creating a project
