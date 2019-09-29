@@ -6,8 +6,8 @@ set(google_test_sources src/gtest-all.cc src/gtest_main.cc)
 
 add_library(google-test STATIC ${google_test_sources} ${google_test_headers})
 
-target_include_directories(google-test PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_include_directories(google-test PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+target_include_directories(google-test PUBLIC "include")
+target_include_directories(google-test PRIVATE ".")
 
 # compile flags
 get_target_property(default_compile_flags google-test COMPILE_FLAGS)
